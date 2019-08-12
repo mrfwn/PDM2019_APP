@@ -1,0 +1,61 @@
+
+<ion-header>
+    <ion-img src="/assets/head.png" ></ion-img>
+</ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Cadastro de Convidado
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.name.valid && (form.controls.name.dirty || form.controls.name.touched)" color="danger">
+      <div [hidden]="!form.controls.name.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.email.valid && (form.controls.email.dirty || form.controls.email.touched)" color="danger">
+      <div [hidden]="!form.controls.email.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Agência</ion-label>
+        <ion-input type="agency" formControlName="agency"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!form.controls.agency.valid && (form.controls.agency.dirty || form.controls.agency.touched)" color="danger">
+        <div [hidden]="!form.controls.agency.errors.required">
+          O campo é obrigatório
+        </div>
+      </ion-item>
+ 
+    <ion-item>
+      <ion-label stacked>Telefone</ion-label>
+      <ion-input type="tel" formControlName="tel"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.tel.valid && (form.controls.tel.dirty || form.controls.tel.touched)" color="danger">
+      <div [hidden]="!form.controls.tel.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
+ 
+    <div padding>
+      <ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</ion-button>
+    </div>
+  </form>
+</ion-content>
+
+ 
