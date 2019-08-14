@@ -104,7 +104,7 @@ export class Tab3Page {
     return this.getChart(this.lineCanvas.nativeElement, 'line', data)
   }
 
-  getPieChart(){
+  getPieChart() {
     const data = {
       labels: ['Vermelho', 'Azul', 'Amarelo'],
       datasets: [{
@@ -116,7 +116,7 @@ export class Tab3Page {
     return this.getChart(this.pieCanvas.nativeElement, 'pie', data);
   }
 
-  getDoughnutChart(){
+  getDoughnutChart() {
     const data = {
       labels: ['Vermelho', 'Azul', 'Amarelo'],
       datasets: [{

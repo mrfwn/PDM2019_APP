@@ -10,11 +10,11 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-tab4',
+  templateUrl: 'tab4.page.html',
+  styleUrls: ['tab4.page.scss']
 })
-export class Tab1Page {
+export class Tab4Page {
   contacts: Observable<any>;
   private PATH = 'contacts/';
   scannerData: any = {};
@@ -27,7 +27,6 @@ export class Tab1Page {
   async setPresence(key: string) {
     if (this.provider.get(key)) {
       const items = this.db.list(this.PATH);
-      alert(JSON.stringify(this.provider));
       items.update(key, { status: 1 });
       const toDo = await this.toast.create({ message: 'Usuário Encontrado', duration: 2000 });
       toDo.present();
