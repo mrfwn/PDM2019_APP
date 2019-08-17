@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
-
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -18,8 +17,10 @@ export class Tab2Page {
   title: string;
   form: FormGroup;
   contact: any;
+  private PATH = 'contacts/';
   // tslint:disable-next-line:no-trailing-whitespace
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private provider: ContactService,
+              // tslint:disable-next-line:max-line-length
               private toast: ToastController, private activatedroute: ActivatedRoute, private route: Router) {
     this.contact = (this.activatedroute.snapshot.params) ? this.activatedroute.snapshot.params  : {};
     console.log(this.contact);
@@ -29,9 +30,14 @@ export class Tab2Page {
     this.form = this.formBuilder.group({
       key: [contact.key],
       name: [contact.name, Validators.required],
-      email: [contact.email, Validators.required],
+      email1: [contact.email1, Validators.required],
+      email2: [contact.email2 || ''],
       agency: [contact.agency, Validators.required],
-      tel: [contact.tel, Validators.required],
+      tel1: [contact.tel1, Validators.required],
+      tel2: [contact.tel2 || ''],
+      status: [1],
+      sexo: [contact.sexo, Validators.required],
+      event: [contact.event, Validators.required],
     });
   }
 

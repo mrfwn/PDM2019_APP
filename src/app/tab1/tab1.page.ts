@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { AngularFireDatabase } from 'angularfire2/database';
-
+import swal from 'sweetalert';
 
 @Injectable()
 @Component({
@@ -26,17 +26,25 @@ export class Tab1Page {
 
   async setPresence(key: string) {
     if (this.provider.get(key)) {
-      const items = this.db.list(this.PATH);
-      alert(JSON.stringify(this.provider));
-      items.update(key, { status: 1 });
-      const toDo = await this.toast.create({ message: 'Usuário Encontrado', duration: 2000 });
-      toDo.present();
+      const conv  = this.provider.getPresence(key);
+      if (conv.status) {
+        // tslint:disable-next-line:max-line-length
+        swal( {title: 'Atenção !!!', text: `${conv.name} - já está presente!!`, icon: 'warning', buttons: [false] , timer: 4000});
+      } else {
+        const items = this.db.list(this.PATH);
+        items.update(key, { status: 1 });
+        // tslint:disable-next-line:max-line-length
+        swal( {title: 'Convidado Registrado!!', text: `Bem Vindo ${conv.name} !!`, icon: 'success', buttons: [false] , timer: 2500});
+        // const toDo = await this.toast.create({ message: 'Convidado Registrado!!', duration: 3000 });
+        // toDo.present();
+      }
     } else {
-      const toDo = await this.toast.create({ message: 'Usuário Não Encontrado', duration: 2000 });
+      const toDo = await this.toast.create({ message: 'Usuário Não Encontrado', duration: 3000 });
       toDo.present();
     }
 
   }
+
 
   async setPresenceCheck(contact: any) {
     if (contact.status) {

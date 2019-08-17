@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 })
 export class ContactService {
   private PATH = 'contacts/';
+  conv: any;
   constructor(private db: AngularFireDatabase) { }
 
   getAll() {
@@ -23,21 +24,50 @@ export class ContactService {
       });
   }
 
+  getPresenceConteudo() {
+     const itemsRef = this.db.list(this.PATH);
+     return itemsRef.snapshotChanges(['child_added'])
+      .subscribe(actions => {
+        actions.forEach(action => {
+          alert(JSON.stringify(action));
+          alert(action.key);
+          alert(action.payload.val());
+        });
+      });
+  }
+  /*getPresence(key: any) {
+    const itemsRef = this.db.list(this.PATH + key);
+    return itemsRef.snapshotChanges(['child_added'])
+     .subscribe(actions => {
+       actions.forEach(action => {
+         alert(JSON.stringify(action));
+         alert(action.key);
+         alert(action.payload.val());
+       });
+     });
+ }*/
+
+ getPresence(key: any) {
+   this.db.object(this.PATH + key).snapshotChanges()
+   .subscribe(actions => this.conv = actions.payload.val());
+   return this.conv;
+}
+
   save(contact: any) {
     return new Promise((resolve, reject) => {
       if (contact.key) {
-        contact.status = 0;
         this.db.list(this.PATH)
           .update(contact.key, {
-            name: contact.name, email: contact.email, agency: contact.agency
-            , tel: contact.tel, status: contact.status
+            name: contact.name, email1: contact.email1, email2: contact.email2, agency: contact.agency
+            , tel1: contact.tel1, tel2: contact.tel2 , status: contact.status , sexo: contact.sexo , event: contact.event
           })
           .then(() => {resolve(); contact = null; })
           .catch((e) => reject(e));
       } else {
-        contact.status = 0;
         this.db.list(this.PATH)
-          .push({ name: contact.name, email: contact.email, agency: contact.agency, tel: contact.tel , status: contact.status })
+          .push({ name: contact.name, email1: contact.email1, email2: contact.email2
+            , agency: contact.agency, tel1: contact.tel1, tel2: contact.tel2 , status: contact.status, sexo: contact.sexo
+            , event: contact.event })
           .then(() => resolve());
       }
     });
