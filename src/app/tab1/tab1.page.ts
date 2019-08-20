@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { AngularFireDatabase } from 'angularfire2/database';
 import swal from 'sweetalert';
+import { filterQueryId } from '@angular/core/src/view/util';
 
 @Injectable()
 @Component({
@@ -45,6 +46,7 @@ export class Tab1Page {
 
   }
 
+  async filtro(list: any) { return list.filter((type) => type.event === 'c'); }
 
   async setPresenceCheck(contact: any) {
     if (contact.status) {

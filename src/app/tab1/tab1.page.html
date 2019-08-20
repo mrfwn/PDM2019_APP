@@ -11,12 +11,14 @@
 <ion-content>
  
 <ion-content padding>
-
+  <!--<ion-searchbar ></ion-searchbar>-->
   <ion-list>
     <ion-item-sliding *ngFor="let contact of contacts | async">
+      <div *ngIf="contact.event == 'c'">
       <ion-item [color]="changeColor(contact) ? 'success' : 'danger'">
         <h1>{{ contact.name }}</h1>
       </ion-item>
+    </div>
       <ion-item-options side="start">
           <ion-button [color]="changeColor(contact) ? 'danger' : 'success'" (click)="setPresenceCheck(contact)">
               <ion-icon name="checkmark"></ion-icon>

@@ -25,15 +25,14 @@ export class ContactService {
   }
 
   getPresenceConteudo() {
-     const itemsRef = this.db.list(this.PATH);
-     return itemsRef.snapshotChanges(['child_added'])
+    const listItems = [];
+    this.db.list(this.PATH).snapshotChanges(['child_added'])
       .subscribe(actions => {
         actions.forEach(action => {
-          alert(JSON.stringify(action));
-          alert(action.key);
-          alert(action.payload.val());
+          listItems.push(action.payload.val());
         });
       });
+    return listItems;
   }
   /*getPresence(key: any) {
     const itemsRef = this.db.list(this.PATH + key);

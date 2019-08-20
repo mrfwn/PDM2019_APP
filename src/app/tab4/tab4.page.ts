@@ -24,6 +24,8 @@ export class Tab4Page {
     this.contacts = this.provider.getAll();
   }
 
+  async filtro(list) { return list.filter((type) => type.event === 'p'); }
+
   async setPresence(key: string) {
     if (this.provider.get(key)) {
       const conv  = this.provider.getPresence(key);
