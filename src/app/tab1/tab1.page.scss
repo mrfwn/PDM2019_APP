@@ -1,13 +1,17 @@
 .present{
-  background-color: green;  
+  --background: #66ee66;
+  --border-radius: 10px;  
+  --color: #f3f0f0;
 }
 
 .falt{
-  background-color: red;
+  --background: #f05050;
+  --border-radius: 10px; 
+  --color: #f3f0f0;
 }
 
 .pending{
-  background-color: yellow;
+  --background: yellow;
 }
 
 

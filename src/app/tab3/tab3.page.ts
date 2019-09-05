@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Chart as chartJs} from 'chart.js';
-
+import { ContactService } from '../services/contact.service';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -12,12 +13,14 @@ export class Tab3Page {
     @ViewChild('lineCanvas') lineCanvas;
     @ViewChild('pieCanvas') pieCanvas;
     @ViewChild('doughnutCanvas') doughnutCanvas;
-
+    contacts: Observable<any>;
     barChart: any;
     lineChart: any;
     pieChart: any;
     doughnutChart: any;
-  constructor() { }
+  constructor(private provider: ContactService) {
+    this.contacts = this.provider.getAll();
+  }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {
@@ -42,19 +45,23 @@ export class Tab3Page {
 
   getBarChart() {
     const data = {
-      labels: ['Vermelho', 'Azul', 'Amarelo', 'Verde', 'Roxo'],
-      datasets: [{
-        label: 'número de votos',
-        data: [12, 23, 15, 90, 5],
-        backgroundColor: [
-          'rgb(255, 0, 0)',
-          'rgb(20, 0, 255)',
-          'rgb(255, 230, 0)',
-          'rgb(0, 255, 10)',
-          'rgb(60, 0, 70)'
-        ],
-        borderWidth: 1
-      }]
+      labels: ['Conteúdo', 'Prêmio'],
+      datasets: [
+        {
+          label: 'Presentes',
+          data: [32, 50],
+          backgroundColor: 'lightgreen',
+          borderColor: 'green',
+          borderWidth: 1
+        },
+        {
+          label: 'Faltantes',
+          data: [42, 23],
+          backgroundColor: 'pink',
+          borderColor: 'red',
+          borderWidth: 1
+        }
+      ]
     };
 
     const options = {
@@ -99,17 +106,17 @@ export class Tab3Page {
         scanGaps: false,
       }
     ]
-    }
+    };
 
-    return this.getChart(this.lineCanvas.nativeElement, 'line', data)
+    return this.getChart(this.lineCanvas.nativeElement, 'line', data);
   }
 
   getPieChart() {
     const data = {
-      labels: ['Vermelho', 'Azul', 'Amarelo'],
+      labels: ['Homens', 'Mulheres'],
       datasets: [{
-        data: [300, 75, 224],
-        backgroundColor: ['rgb(200, 6, 0)', 'rgb(36, 0, 255)', 'rgb(242, 255, 0)']
+        data: [40, 75],
+        backgroundColor: ['lightblue', 'yellow']
       }]
     };
 

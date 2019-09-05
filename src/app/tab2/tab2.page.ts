@@ -31,13 +31,15 @@ export class Tab2Page {
       key: [contact.key],
       name: [contact.name, Validators.required],
       email1: [contact.email1, Validators.required],
+      office: [contact.office, Validators.required],
       email2: [contact.email2 || ''],
       agency: [contact.agency, Validators.required],
       tel1: [contact.tel1, Validators.required],
       tel2: [contact.tel2 || ''],
       status: [1],
+      regtype: [0],
       sexo: [contact.sexo, Validators.required],
-      event: [contact.event, Validators.required],
+      event: [contact.event || 'a'],
     });
   }
 

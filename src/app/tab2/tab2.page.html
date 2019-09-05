@@ -23,7 +23,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Email1</ion-label>
+      <ion-label stacked>Email</ion-label>
       <ion-input type="email" formControlName="email1"></ion-input>
     </ion-item>
     <ion-item *ngIf="!form.controls.email1.valid && (form.controls.email1.dirty || form.controls.email1.touched)" color="danger">
@@ -31,12 +31,21 @@
         O campo é obrigatório
       </div>
     </ion-item>
-
+    <ion-item>
+      <ion-label stacked>Cargo</ion-label>
+      <ion-input type="text" formControlName="office"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.office.valid && (form.controls.office.dirty || form.controls.office.touched)" color="danger">
+      <div [hidden]="!form.controls.office.errors.required">
+        O campo é obrigatório
+      </div>
+    </ion-item>
+<!--
     <ion-item>
       <ion-label stacked>Email2</ion-label>
       <ion-input type="email" formControlName="email2"></ion-input>
     </ion-item>
-    <!--
+    
     <ion-item *ngIf="!form.controls.email2.valid && (form.controls.email2.dirty || form.controls.email2.touched)" color="danger">
       <div [hidden]="!form.controls.email2.errors.required">
         O campo é obrigatório
@@ -54,7 +63,7 @@
       </ion-item>
  
     <ion-item>
-      <ion-label stacked>Telefone1</ion-label>
+      <ion-label stacked>Telefone</ion-label>
       <ion-input type="tel" formControlName="tel1"></ion-input>
     </ion-item>
     <ion-item *ngIf="!form.controls.tel1.valid && (form.controls.tel1.dirty || form.controls.tel1.touched)" color="danger">
@@ -62,12 +71,12 @@
         O campo é obrigatório
       </div>
     </ion-item>
-
+<!--
     <ion-item>
       <ion-label stacked>Telefone2</ion-label>
       <ion-input type="tel" formControlName="tel2"></ion-input>
     </ion-item>
-    <!--
+    
     <ion-item *ngIf="!form.controls.tel2.valid && (form.controls.tel2.dirty || form.controls.tel2.touched)" color="danger">
       <div [hidden]="!form.controls.tel2.errors.required">
         O campo é obrigatório
@@ -105,7 +114,7 @@
       <div [hidden]="!form.controls.event.errors.required">
         O campo é obrigatório
       </div>
-    </ion-item>-->
+    </ion-item>
     <ion-item>
       <ion-label stacked>Evento</ion-label>
       <ion-select placeholder="Evento" type="event" formControlName="event">
@@ -117,7 +126,7 @@
       <div [hidden]="!form.controls.event.errors.required">
         O campo é obrigatório
       </div>
-    </ion-item>
+    </ion-item>-->
     
     <div padding>
       <ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</ion-button>

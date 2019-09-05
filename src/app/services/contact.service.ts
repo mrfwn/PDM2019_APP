@@ -57,15 +57,17 @@ export class ContactService {
       if (contact.key) {
         this.db.list(this.PATH)
           .update(contact.key, {
-            name: contact.name, email1: contact.email1, email2: contact.email2, agency: contact.agency
-            , tel1: contact.tel1, tel2: contact.tel2 , status: contact.status , sexo: contact.sexo , event: contact.event
+            name: contact.name, email1: contact.email1, office: contact.office , email2: contact.email2, agency: contact.agency
+            , tel1: contact.tel1, tel2: contact.tel2 , status: contact.status , regtype: contact.regtype ,
+             sexo: contact.sexo , event: contact.event
           })
           .then(() => {resolve(); contact = null; })
           .catch((e) => reject(e));
       } else {
         this.db.list(this.PATH)
-          .push({ name: contact.name, email1: contact.email1, email2: contact.email2
-            , agency: contact.agency, tel1: contact.tel1, tel2: contact.tel2 , status: contact.status, sexo: contact.sexo
+          .push({ name: contact.name, email1: contact.email1, office: contact.office , email2: contact.email2
+            , agency: contact.agency, tel1: contact.tel1, tel2: contact.tel2 , status: contact.status, regtype: contact.regtype ,
+             sexo: contact.sexo
             , event: contact.event })
           .then(() => resolve());
       }
